@@ -1,7 +1,7 @@
 import React from 'react';
 import productsData from './productsData';
 
-export default ({ data, update }) => {
+export default ({data, update}) => {
 
     const products = data.map((product, index) => {
         return (<productsData product={product} index={index} update={update} />);
@@ -13,8 +13,8 @@ export default ({ data, update }) => {
             <tr>
                 <th>Image</th>
                 <th>Name</th>
-                <th>Variant</th>
                 <th>Brand</th>
+                <th>Price</th>
             </tr>
             </thead>
             <tbody>

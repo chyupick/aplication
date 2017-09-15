@@ -8,7 +8,7 @@ class ProductsContainer extends Component {
                 <input type="text"/>
                 <div className='goods'>
                     {this.props.items.map((item, index) =>
-                        <div key={index} className="goods-item">
+                        <div key={index} className='goods-item'>
                             <h3>{item.asin}</h3>
                             <img src='#'/>
                             <p>{item.price}</p>
