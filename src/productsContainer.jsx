@@ -5,7 +5,7 @@ class ProductsContainer extends Component {
     render() {
         return (
             <div className='products-main'>
-                <input type="text"/>
+                <input type='search'/>
                 <div className='goods'>
                     {this.props.items.map((item, index) =>
                         <div key={index} className='goods-item'>
@@ -21,4 +21,4 @@ class ProductsContainer extends Component {
 
 }
 
-export default ProdBlock;
+export default ProductsContainer;
