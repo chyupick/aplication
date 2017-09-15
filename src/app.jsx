@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import {ReactDom} from 'react-dom';
+import ReactDOM from 'react-dom';
 
-import ProductsContainer from 'productsContainer';
-import products from 'products.json';
-import load from '../utils/load';
+import ProductsContainer from './productsContainer';
+//import products from 'products.json';
 
-products = require('./src/products.json');
+//products = require('./src/products.json');
 
-load('products.json')
-    .then(data => {});
 
 export default class App extends Component {
     constructor(props) {
@@ -22,17 +19,18 @@ export default class App extends Component {
         this.loadData();
     }
 
-    loadData() {
-        load(this.props.data).then(products => {
-            this.setState({
-//                data: JSON.parse(products)
-                data: goods.product
+    loadData(page = 0, pageSize = 10) {
+        fetch('/src/products.json')
+            .then(response => {
+                console.log(response.json);
+                return (response.json());
+            })
+            .then(goods => {
+                const initialData = goods.products.slice(page*pageSize, pageSize);
+                this.setState({
+                    data: initialData
+                });
             });
-        });
-    }
-
-    updateData(config) {
-        this.setState(config);
     }
 
     render() {
@@ -43,5 +41,9 @@ export default class App extends Component {
                 </div>
             </div>
         );
+    }
+
+    updateData(config) {
+        this.setState(config);
     }
 }
