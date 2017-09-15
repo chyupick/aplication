@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 
 import ProductsContainer from './productsContainer';
+import Sidebar from './sidebar';
 
 export default class App extends Component {
     constructor() {
         super();
         this.state = {
-            data: []
+            dataProd: [],
+            dataBar: []
         };
 
         this.loadData();
@@ -21,7 +23,8 @@ export default class App extends Component {
             .then(goods => {
                 const initialData = goods.products.slice(page*pageSize, pageSize);
                 this.setState({
-                    data: initialData
+                    dataProd: initialData,
+                    dataBar: goods.products
                 });
             });
     }
@@ -30,7 +33,8 @@ export default class App extends Component {
         return (
             <div>
                 <div className='container'>
-                    <ProductsContainer items={this.state.data} />
+                    <ProductsContainer items={this.state.dataProd} />
+                    <Sidebar items={this.state.dataBar}/>
                 </div>
             </div>
         );

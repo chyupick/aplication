@@ -1,10 +1,10 @@
 import React from 'react';
-import productsData from './productsData';
+import ProductsData from './productsData';
 
 export default ({data, update}) => {
 
     const products = data.map((product, index) => {
-        return (<productsData product={product} index={index} update={update} />);
+        return (<ProductsData product={product} index={index} key={'user-${index}'} update={update} />);
     });
 
     return (
