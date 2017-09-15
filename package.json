@@ -4,25 +4,28 @@
   "description": "\"# aplication\" \r # aplication",
   "main": "index.js",
   "dependencies": {
-    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-import-extension-es6-to-js": "^0.1.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.0",
     "jquery": "^3.2.1",
     "json-loader": "^0.5.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-loader": "^2.4.2",
     "url-loader": "^0.5.9",
-    "webpack": "^3.5.6",
-    "webpack-dev-server": "^2.7.1"
+    "webpack": "^2.7.0",
+    "webpack-dev-server": "^2.8.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
