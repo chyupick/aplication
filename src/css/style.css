@@ -1,0 +1,22 @@
+#app {
+    width: 100%;
+    height: 900px;
+    background: #bdffe6;
+}
+
+.products-main {
+    width: 750px;
+    height: 500px;
+    margin: auto;
+    display: flex;
+}
+
+.goods {
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.goods .goods-item{
+    cursor: pointer;
+}
