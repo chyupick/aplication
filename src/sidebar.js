@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 
-import ProductsContainer from './productsContainer';
-
 export default class Sidebar extends Component {
     render() {
-        let filterCategories = new Tools (this.props.items.map((item, index) => item.bsr_category));
+        let filterCategories = new Set (this.props.items.map((item, index) => item.bsr_category));
         let arrayCategories = [...filterCategories];
 
         return (

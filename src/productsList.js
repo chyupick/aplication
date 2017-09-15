@@ -4,7 +4,7 @@ import ProductsData from './productsData';
 export default ({data, update}) => {
 
     const products = data.map((product, index) => {
-        return (<ProductsData product={product} index={index} key={'user-${index}'} update={update} />);
+        return (<ProductsData product={product} index={index} key={'product-${index}'} update={update} />);
     });
 
     return (
