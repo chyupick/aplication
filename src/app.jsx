@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ReactDom} from 'react-dom';
 
+import ProductsContainer from 'productsContainer';
 import products from 'products.json';
 import load from '../utils/load';
 
@@ -13,9 +14,9 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
+            data: [],
             active: 0,
-            term: ''
+            searchTerm: ''
         };
 
         this.loadData();
@@ -24,7 +25,8 @@ export default class App extends Component {
     loadData() {
         load(this.props.data).then(products => {
             this.setState({
-                data: JSON.parse(products)
+//                data: JSON.parse(products)
+                data: goods.product
             });
         });
     }
@@ -37,9 +39,9 @@ export default class App extends Component {
         return (
             <div>
                 <div className='container'>
-
+                    <ProductsContainer items={this.state.data} />
                 </div>
             </div>
-        )
+        );
     }
 }

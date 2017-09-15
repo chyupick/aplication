@@ -1,4 +1,4 @@
-const path = require( 'path' );
+const path = require('path');
 
 module.exports = {
 
@@ -10,13 +10,13 @@ module.exports = {
 
     devServer: {
         inline: true,
-        port: 8090
+        port: 3000
     },
 
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(jsx|js)$/,
                 exclude: /node_modules/,
                 use: "babel-loader"
             }
