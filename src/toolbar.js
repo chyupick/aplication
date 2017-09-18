@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 export default class Toolbar extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export default class Toolbar extends Component {
     }
     reset() {
         this.props.update({
-            data: this.props.initialData,
+            data: this.props.initialProducts,
             term: '',
             active: 0
         });

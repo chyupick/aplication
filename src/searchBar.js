@@ -4,7 +4,6 @@ export default ({term, data, update}) => {
 
     const dataSearch = e => {
         const value = e.target.value.toLowerCase();
-
         const filter = data.filter(products => {
             return (products.name.toLowerCase().includes(value));
         });
@@ -12,7 +11,7 @@ export default ({term, data, update}) => {
         update({
             data: filter,
             active: 0,
-            searchTerm: value
+            term: value
         });
 
     };
@@ -20,7 +19,7 @@ export default ({term, data, update}) => {
             <div className='searchbar form-group'>
                 <input
                     value={term}
-                    type='text'
+                    type='search'
                     className='form-control'
                     placeholder='Search products by name...'
                     onChange={dataSearch}
