@@ -21,7 +21,7 @@ body {
     cursor: pointer;
 }
 
-.btn:hover {
+.btn:hover, .btn:active {
     color: forestgreen;
 }
 
@@ -77,3 +77,28 @@ body {
     height: 150px;
 }
 
+.pagination {
+    width: 70%;
+    display: flex;
+    margin: auto;
+    float: right;
+}
+
+.pages {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.page-item {
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+    color: forestgreen;
+    font-size: 26px;
+}
+
+.page-item:hover, .page-item:active {
+    color: crimson;
+}

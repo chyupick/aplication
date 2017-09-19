@@ -7,7 +7,8 @@ import Toolbar from './toolbar';
 import SearchBar from './searchBar';
 // import ActiveProduct from './activeProduct';
 // import ProductsList from './productsList';
-import Pagination from "./pagination";
+//import Pagination from "./pagination";
+import Page from "./page";
 
 export default class App extends Component {
     constructor(props) {
@@ -15,11 +16,11 @@ export default class App extends Component {
         this.state = {
             dataProd: [],
             dataBar: [],
-            data: [],
+            //data: [],
             sumPages: 0,
-            total: 0,
-            current: 1,
-            visiblePage: 3
+            total: 0
+            //current: 1
+            //visiblePage: 3
         };
         this.loadData();
     }
@@ -33,25 +34,26 @@ export default class App extends Component {
                 const initialData = goods.products.slice(page*pageSize, pageSize);
                 const total = goods.products.length;
                 const sumPages = Math.ceil(total/pageSize);
-                const current = this.props.handlePageChanged;
+                //const current = page;
                 this.setState({
                     dataProd: initialData,
                     dataBar: goods.products,
                     total: total,
-                    current: current,
+                    //current: current,
                     sumPages: sumPages
                 });
-                load(this.props.data).then(products => {
-                    this.initialProducts = JSON.parse(products);
-                    this.setState({
-                        data: this.initialProducts
-                    });
-                });
+                // load(this.props.data).then(products => {
+                //     this.initialProducts = JSON.parse(products);
+                //     this.setState({
+                //         data: this.initialProducts
+                //     });
+                // });
             });
     }
 
 
     render() {
+        console.log(this.state.dataBar);
         return (
             <div>
                 <div className='container'>
@@ -60,7 +62,7 @@ export default class App extends Component {
                         <div className='col-sm-12'>
                             <SearchBar
                                 term={this.state.term}
-                                data={this.initialProducts}
+                                data={this.state.dataBar}
                                 update={this.updateData.bind(this)}
                             />
                         </div>
@@ -80,12 +82,12 @@ export default class App extends Component {
 
                     <div className='row'>
                         <div className='col-sm-12'>
-                            <Toolbar initialProducts={this.initialProducts} data={this.state.data} update={this.updateData.bind(this)} />
+                            <Toolbar initialData={this.initialData} data={this.state.data} update={this.updateData.bind(this)} />
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-sm-12'>
-                            <Pagination items={this.state.current} />
+                            <Page items={this.state.sumPages} onClick={this.handlePageChanged} />
                         </div>
                     </div>
 

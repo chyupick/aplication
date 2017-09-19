@@ -5,7 +5,6 @@ export default class Toolbar extends Component {
         super(props);
         this.sorted = {
             productName: true,
-            variant: true,
             brand: true,
             price: true
         };
@@ -36,13 +35,11 @@ export default class Toolbar extends Component {
     }
 
     render() {
+
         return (
             <div className='toolbar'>
                 <button className='btn btn-default' onClick={() => this.sort('productName')}>
                     <i className='fa fa-sort-by-name'></i>  Sort by name
-                </button>
-                <button className='btn btn-default' onClick={() => this.sort('variant')}>
-                    <i className='fa fa-sort-by-variant'></i>  Sort by variant
                 </button>
                 <button className='btn btn-default' onClick={() => this.sort('brand')}>
                     <i className='fa fa-sort-by-brand'></i>  Sort by brand
