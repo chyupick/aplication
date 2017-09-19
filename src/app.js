@@ -61,6 +61,7 @@ export default class App extends Component {
                     <div className='row'>
                         <div className='col-sm-12'>
                             <SearchBar
+                                //items={this.state.dataProd}
                                 term={this.state.term}
                                 data={this.state.dataBar}
                                 update={this.updateData.bind(this)}

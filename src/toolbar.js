@@ -28,7 +28,7 @@ export default class Toolbar extends Component {
     }
     reset() {
         this.props.update({
-            data: this.props.initialProducts,
+            data: this.props.dataBar,
             term: '',
             active: 0
         });
