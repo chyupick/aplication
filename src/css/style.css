@@ -72,6 +72,14 @@ body {
     padding-top: 40px;
 }
 
+.goods-item p {
+    text-align: center;
+    width: 60%;
+    color: maroon;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .goods-item img {
     width: 150px;
     height: 150px;

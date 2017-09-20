@@ -18,7 +18,8 @@ export default class App extends Component {
             dataBar: [],
             //data: [],
             sumPages: 0,
-            total: 0
+            total: 0,
+            sizePage: 10
             //current: 1
             //visiblePage: 3
         };
@@ -34,14 +35,17 @@ export default class App extends Component {
                 const initialData = goods.products.slice(page*pageSize, pageSize);
                 const total = goods.products.length;
                 const sumPages = Math.ceil(total/pageSize);
-                //const current = page;
+                //const sizePage = this.state.sizePage;
+                const currentPage = goods.products.slice(0, this.state.sizePage);
                 this.setState({
                     dataProd: initialData,
                     dataBar: goods.products,
                     total: total,
-                    //current: current,
+                    currentPage: currentPage,
                     sumPages: sumPages
                 });
+                this.newPage();
+                //this.getPaging();
                 // load(this.props.data).then(products => {
                 //     this.initialProducts = JSON.parse(products);
                 //     this.setState({
@@ -49,6 +53,30 @@ export default class App extends Component {
                 //     });
                 // });
             });
+    }
+
+    // getPaging() {
+    //     const sizePage = this.state.sizePage;
+    //     const total = this.state.total;
+    //     const sumPages = Math.ceil(total/sizePage);
+    //     this.setState({
+    //         //dataProd: initialData,
+    //         //dataBar: goods.products,
+    //         //total: total,
+    //         sumPages: sumPages
+    //     });
+    // }
+
+    newPage(itemPage, current) {
+        current = {
+            currentPage: this.state.dataBar.slice(itemPage*this.state.sizePage - this.state.sizePage,
+                itemPage*this.state.sizePage)};
+                console.log(current);
+    }
+
+    onChangePage(event) {
+        let itemPage = Number(event.target.id);
+        this.newPage(itemPage);
     }
 
 
@@ -88,7 +116,7 @@ export default class App extends Component {
                     </div>
                     <div className='row'>
                         <div className='col-sm-12'>
-                            <Page items={this.state.sumPages} onClick={this.handlePageChanged} />
+                            <Page items={this.state.sumPages} onClick={this.onChangePage} />
                         </div>
                     </div>
 

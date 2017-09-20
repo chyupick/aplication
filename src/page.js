@@ -23,8 +23,9 @@ export default class Page extends Component {
                     {
                         this.handlePageChanged().map((item, index) =>
                             (<div key={index}
+                                  id={item}
                                   className='page-item'
-                                  onClick={this.handlePageChanged.bind(this)}>
+                                  onClick={this.props.onClick}>
                                 {item}
                             </div>))
                     }
