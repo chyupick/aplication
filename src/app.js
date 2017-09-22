@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import load from "../utils/load";
 
 import ProductsContainer from './productsContainer';
 import Sidebar from './sidebar';
 import Toolbar from './toolbar';
 import SearchBar from './searchBar';
-// import ActiveProduct from './activeProduct';
-// import ProductsList from './productsList';
-//import Pagination from "./pagination";
 import Page from "./page";
+//import productsList from "./productsList";
 
 export default class App extends Component {
     constructor(props) {
@@ -17,16 +14,15 @@ export default class App extends Component {
             dataProd: [],
             dataBar: [],
             //data: [],
+            //currentPage: [],
             sumPages: 0,
             total: 0,
-            sizePage: 10
-            //current: 1
-            //visiblePage: 3
+            pageSize: 10
         };
         this.loadData();
     }
 
-    loadData(page = 0, pageSize = 10) {
+    loadData(page = 0, pageSize = 9) {
         fetch('/src/products.json')
             .then(response => {
                 return (response.json());
@@ -35,53 +31,53 @@ export default class App extends Component {
                 const initialData = goods.products.slice(page*pageSize, pageSize);
                 const total = goods.products.length;
                 const sumPages = Math.ceil(total/pageSize);
-                //const sizePage = this.state.sizePage;
-                const currentPage = goods.products.slice(0, this.state.sizePage);
+                const currentPage = goods.products.slice(page, this.state.pageSize);
+                const currentProducts = goods.products.slice(currentPage, this.state.dataProd);
                 this.setState({
                     dataProd: initialData,
                     dataBar: goods.products,
                     total: total,
                     currentPage: currentPage,
+                    currentProducts: currentProducts,
                     sumPages: sumPages
                 });
                 this.newPage();
-                //this.getPaging();
-                // load(this.props.data).then(products => {
-                //     this.initialProducts = JSON.parse(products);
-                //     this.setState({
-                //         data: this.initialProducts
-                //     });
-                // });
             });
     }
-
-    // getPaging() {
-    //     const sizePage = this.state.sizePage;
-    //     const total = this.state.total;
-    //     const sumPages = Math.ceil(total/sizePage);
-    //     this.setState({
-    //         //dataProd: initialData,
-    //         //dataBar: goods.products,
-    //         //total: total,
-    //         sumPages: sumPages
-    //     });
-    // }
-
-    newPage(itemPage, current) {
-        current = {
-            currentPage: this.state.dataBar.slice(itemPage*this.state.sizePage - this.state.sizePage,
-                itemPage*this.state.sizePage)};
-                console.log(current);
+    newPage(itemPage, itemProducts, update) {
+        // let itemProducts = [];
+        update = {
+            currentPage: this.state.dataBar.slice(itemPage*this.state.pageSize - this.state.pageSize,
+                itemPage*this.state.pageSize),
+            currentProducts: this.state.dataBar.slice(itemProducts*this.state.dataProd - this.state.dataProd,
+                itemProducts*this.state.dataProd)
+            // dataProd: this.state.dataBar.slice(itemProducts[itemProduct*this.state.dataProd] - this.state.dataProd,
+            //     itemProducts[itemProduct*this.state.dataProd])
+        };
+                console.log('current: ' + update);
     }
 
     onChangePage(event) {
         let itemPage = Number(event.target.id);
-        this.newPage(itemPage);
+        let newProducts = this.state.dataBar.map((item, index) => item.products);
+        let itemProducts = Array([...newProducts*this.state.dataProd, event], event.target.newPage);
+        //let itemProduct =
+
+        // const value = event.target.dataProd;
+        // let itemProducts = this.state.dataProd.map((item, index) => item.products);
+        // let newProducts = [...itemProducts];
+        // const filter = newProducts.filter(products => {
+        //     products(value);
+        //     return (products(value));
+        //
+        // });
+        this.newPage(itemPage, itemProducts);
+        console.log('page: ' + itemPage, 'products: ' + itemProducts);
     }
 
 
     render() {
-        console.log(this.state.dataBar);
+
         return (
             <div>
                 <div className='container'>
@@ -99,7 +95,8 @@ export default class App extends Component {
 
                     <div className='row'>
                         <div className='col-sm-12'>
-                            <ProductsContainer items={this.state.dataProd} />
+                            <ProductsContainer items={this.state.dataProd}
+                                               changePages={this.onChangePage.bind(this)} />
                         </div>
                     </div>
 
@@ -111,12 +108,15 @@ export default class App extends Component {
 
                     <div className='row'>
                         <div className='col-sm-12'>
-                            <Toolbar initialData={this.initialData} data={this.state.data} update={this.updateData.bind(this)} />
+                            <Toolbar initialData={this.initialData}
+                                     data={this.state.data}
+                                     update={this.updateData.bind(this)} />
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-sm-12'>
-                            <Page items={this.state.sumPages} onClick={this.onChangePage} />
+                            <Page items={this.state.sumPages}
+                                  onClickChange={this.onChangePage.bind(this)} />
                         </div>
                     </div>
 

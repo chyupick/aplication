@@ -25,7 +25,7 @@ export default class Page extends Component {
                             (<div key={index}
                                   id={item}
                                   className='page-item'
-                                  onClick={this.props.onClick}>
+                                  onClick={this.props.onClickChange}>
                                 {item}
                             </div>))
                     }

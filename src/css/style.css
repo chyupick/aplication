@@ -57,7 +57,7 @@ body {
 
 .searchbar input {
     height: 30px;
-    width: 80%;
+    width: 94%;
 }
 
 .goods {
@@ -72,17 +72,31 @@ body {
     padding-top: 40px;
 }
 
+.goods-item:hover {
+    border: 1px solid darkorange;
+    transition: 0.3s ease-in-out;
+}
+
 .goods-item p {
     text-align: center;
     width: 60%;
     color: maroon;
     font-size: 18px;
     font-weight: bold;
+    padding: 10px;
+    margin: auto;
+}
+
+.goods-item h3 {
+    padding: 10px;
+    text-align: center;
 }
 
 .goods-item img {
     width: 150px;
     height: 150px;
+    display: flex;
+    margin: auto;
 }
 
 .pagination {

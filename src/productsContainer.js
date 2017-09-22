@@ -7,7 +7,9 @@ export default class ProductsContainer extends Component {
             <div className='products-main'>
                 <div className='goods'>
                     {this.props.items.map((item, index) =>
-                        <div key={index} className='goods-item'>
+                        <div key={index}
+                             id={item}
+                             className='goods-item'>
                             <p>{'cost: ' + item.price + ' $'}</p>
                             <img src={item.img} alt="picture" width='60px' />
                             <h3>{item.name}</h3>
